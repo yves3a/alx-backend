@@ -1,13 +1,18 @@
 #!/usr/bin/env python3
-""" 0-app module """
-from flask import Flask
-from routes.routes_0 import app_routes
 
+"""A simple flask app."""
+
+from flask import Flask, render_template
 
 app = Flask(__name__)
+app.url_map.strict_slashes = False
 
-app.register_blueprint(app_routes)
+
+@app.route("/", methods=["GET"])
+def home():
+    """Get the locale from request"""
+    return render_template("0-index.html")
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+    app.run(host="0.0.0.0", port=5000)
